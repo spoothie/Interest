@@ -1,8 +1,10 @@
 package com.seiken.interest;
 
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.player.*;
 
-public class InterestPlayer extends PlayerListener {
+public class InterestPlayer implements Listener {
 
     private final Interest plugin;
 
@@ -11,12 +13,12 @@ public class InterestPlayer extends PlayerListener {
         this.plugin = plugin;
     }
     
-    @Override
+    @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         plugin.updateCurrent(event.getPlayer());
     }
 
-    @Override
+    @EventHandler
     public void onPlayerQuit( PlayerQuitEvent event )
     {
     	plugin.removeCurrent( event.getPlayer() );
@@ -24,7 +26,7 @@ public class InterestPlayer extends PlayerListener {
 
     
     
-    @Override
+    @EventHandler
     public void onPlayerMove( PlayerMoveEvent event )
     {
     	plugin.updateCurrent( event.getPlayer() );

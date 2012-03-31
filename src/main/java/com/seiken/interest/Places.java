@@ -2,7 +2,6 @@ package com.seiken.interest;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,7 +12,6 @@ import java.util.logging.Logger;
 
 import com.seiken.interest.version.PlaceReader;
 import com.seiken.interest.version.Version1_1Reader;
-import com.seiken.interest.version.Version1_1Writer;
 import com.seiken.interest.version.Version1_2Reader;
 import com.seiken.interest.version.Version1_2Writer;
 

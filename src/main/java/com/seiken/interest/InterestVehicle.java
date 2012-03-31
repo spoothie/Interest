@@ -1,10 +1,11 @@
 package com.seiken.interest;
 
 import org.bukkit.entity.Player;
-import org.bukkit.event.vehicle.VehicleListener;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.vehicle.VehicleMoveEvent;
 
-public class InterestVehicle extends VehicleListener {
+public class InterestVehicle implements Listener {
 
     private final Interest plugin;
 
@@ -13,7 +14,7 @@ public class InterestVehicle extends VehicleListener {
         this.plugin = plugin;
     }
     
-    @Override
+    @EventHandler
     public void onVehicleMove( VehicleMoveEvent event )
     {
     	if ( event.getVehicle().getPassenger() instanceof Player )

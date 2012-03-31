@@ -12,17 +12,12 @@ import java.util.logging.Logger;
 import me.taylorkelly.help.Help;
 
 import org.bukkit.Location;
-import org.bukkit.Server;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Event.Priority;
-import org.bukkit.event.Event;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.PluginDescriptionFile;
-import org.bukkit.plugin.PluginLoader;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Interest extends JavaPlugin {
@@ -56,10 +51,8 @@ public class Interest extends JavaPlugin {
     	config = new Config( this );
     	
     	updatePlaces();
-        getServer().getPluginManager().registerEvent( Event.Type.PLAYER_JOIN,    player,  Priority.Normal, this );
-        getServer().getPluginManager().registerEvent( Event.Type.PLAYER_QUIT,    player,  Priority.Normal, this );
-        getServer().getPluginManager().registerEvent( Event.Type.PLAYER_MOVE,    player,  Priority.Normal, this );
-        getServer().getPluginManager().registerEvent( Event.Type.VEHICLE_MOVE,   vehicle, Priority.Normal, this );
+        getServer().getPluginManager().registerEvents(player, this);
+        getServer().getPluginManager().registerEvents(vehicle, this);
         
         log.log(Level.INFO, this.getDescription().getFullName() + " is enabled!");
         
@@ -171,7 +164,7 @@ public class Interest extends JavaPlugin {
     	if(sender instanceof Player)
     		p = (Player) sender;
     	
-    	if ( ( commandName.equals( "who" ) && !this.getConfig().disableWho() ) || commandName.equals( "where" ) ) {
+    	if ( ( commandName.equals( "who" ) && !this.getPluginConfig().disableWho() ) || commandName.equals( "where" ) ) {
     		if ( args.length <= 0 )
     			this.sendWho( p );
     		else
@@ -254,7 +247,7 @@ public class Interest extends JavaPlugin {
     	return b;
 	}
 
-	public Config getConfig()
+	public Config getPluginConfig()
     {
     	return config;
     }
@@ -265,11 +258,11 @@ public class Interest extends JavaPlugin {
     	boolean b = true;
     	while ( b ) {
     		b = false;
-	    	while ( r.length() >= 2 && r.charAt( r.length() - 2 ) == 'ยง' ) {
+	    	while ( r.length() >= 2 && r.charAt( r.length() - 2 ) == 'ง' ) {
 	    		r = r.substring( 0, r.length() - 2 );
 	    		b = true;
 	    	}
-	    	while ( r.length() >= 1 && r.charAt( r.length() - 1 ) == 'ยง' ) {
+	    	while ( r.length() >= 1 && r.charAt( r.length() - 1 ) == 'ง' ) {
 	    		r = r.substring( 0, r.length() - 1 );
 	    		b = true;
 	    	}
